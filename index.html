@@ -3,6 +3,14 @@
 <head>
 	<title>Monopoly Game</title>
 	<style type="text/css">
+		.board{
+			width: 70%;
+			float: left;
+		}
+		.display_output{
+			width: 30%;
+			float: left;
+		}
 		td.square{
 			border: 1px solid black;
 			padding-bottom: 0;
@@ -10,14 +18,23 @@
 			position: relative;
 		}
 		td.square img{
-			z-index:0;
+			left: 0px;
+			top: 0px;
 			width: 60px;
 		}
-		img.player{
+		img.player1{
 			z-index:1;
 			position: absolute;
 			bottom: 0;
 			right: 0;
+			width: 30px;
+		}
+		img.player2{
+			z-index:1;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 30px;
 		}
 		div.dice{
 			float: left;
@@ -31,15 +48,23 @@
 		}
 	</style>
 	<script type="text/javascript">
-		var curr_position = 1;
-		var money = 100;
-		var player = document.createElement("img");
-			player.setAttribute('src', 'Images/Player1.png');
-			player.setAttribute('class', 'player');
-			player.setAttribute('width','100%');
+		var curr_player = 1;
+		var curr_position1 = 1;
+		var curr_position2 = 1;
+		var money1 = 100;
+		var money2 = 100;
+		var player1 = document.createElement("img");
+			player1.setAttribute('src', 'Images/Player1.png');
+			player1.setAttribute('class', 'player1');
+			player1.setAttribute('width','50%');
+		var player2 = document.createElement("img");
+			player2.setAttribute('src', 'Images/Player2.png');
+			player2.setAttribute('class', 'player2');
+			player2.setAttribute('width', '50%');
 		function constructor(){
 			var box_1 = document.getElementById("1");
-			box_1.appendChild(player);
+			box_1.appendChild(player1);
+			box_1.appendChild(player2);
 		}
 		function rollDice(){
 			var die1 = document.getElementById("die1");
@@ -50,22 +75,41 @@
 			die2.innerHTML = d2;
 			var totalValue = d1+d2;
 			update_position(totalValue);
+			if(curr_player==1){
+				curr_player = 2;
+			}
+			else{
+				curr_player = 1;
+			}
 		}
 		function update_position(totalValue){
-			var new_position = curr_position + totalValue;
-			if(new_position>40){
-				new_position -= 40;
+			if(curr_player == 1){
+				var new_position = curr_position1 + totalValue;
+				if(new_position>40){
+					new_position -= 40;
+				}
+				var curr_box = document.getElementById(curr_position1);
+				var new_box = document.getElementById(new_position);
+				new_box.appendChild(player1);
+				curr_position1 = new_position;
 			}
-			var curr_box = document.getElementById(curr_position);
-			var new_box = document.getElementById(new_position);
-			new_box.appendChild(player);
-			curr_position = new_position;
+			else{
+				var new_position = curr_position2 + totalValue;
+				if(new_position>40){
+					new_position -= 40;
+				}
+				var curr_box = document.getElementById(curr_position2);
+				var new_box = document.getElementById(new_position);
+				new_box.appendChild(player2);
+				curr_position2 = new_position;
+			}
 		}
 		window.onload = function () { constructor(); }
 	</script>
 </head>
 <body>
-	<span>
+	<div>
+		<div class="board">
 		<table>
 			<tr>
 				<td class="square" id="21"><img src="Images/Income_tax.png"></td>
@@ -211,6 +255,10 @@
 				<td class="square" id="1"><img src="Images/Go.png"></td>
 			</tr>
 		</table>
-	</span>
+		</div>
+		<div class="display_output">
+			
+		</div>
+	</div>
 </body>
 </html>
