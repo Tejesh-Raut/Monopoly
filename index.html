@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Monopoly Game</title>
+	<style type="text/css">
+		td.square{
+			border: 1px solid black;
+			padding-bottom: 0;
+			padding-top: 0;
+			position: relative;
+		}
+		td.square img{
+			z-index:0;
+			width: 60px;
+		}
+		img.player{
+			z-index:1;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		div.dice{
+			float: left;
+			width: 32px;
+			background: #F5F5F5;
+			border: #999 1px solid;
+			padding: 10px;
+			font-size: 24px;
+			text-align: center;
+			margin: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		var curr_position = 1;
+		var money = 100;
+		var player = document.createElement("img");
+			player.setAttribute('src', 'Images/Player1.png');
+			player.setAttribute('class', 'player');
+			player.setAttribute('width','100%');
+		function constructor(){
+			var box_1 = document.getElementById("1");
+			box_1.appendChild(player);
+		}
+		function rollDice(){
+			var die1 = document.getElementById("die1");
+			var die2 = document.getElementById("die2");
+			var d1 = Math.floor(Math.random()*6)+1;
+			var d2 = Math.floor(Math.random()*6)+1;
+			die1.innerHTML = d1;
+			die2.innerHTML = d2;
+			var totalValue = d1+d2;
+			update_position(totalValue);
+		}
+		function update_position(totalValue){
+			var new_position = curr_position + totalValue;
+			if(new_position>40){
+				new_position -= 40;
+			}
+			var curr_box = document.getElementById(curr_position);
+			var new_box = document.getElementById(new_position);
+			new_box.appendChild(player);
+			curr_position = new_position;
+		}
+		window.onload = function () { constructor(); }
+	</script>
+</head>
+<body>
+	<span>
+		<table>
+			<tr>
+				<td class="square" id="21"><img src="Images/Income_tax.png"></td>
+				<td class="square" id="20"><img src="Images/Normal.png"></td>
+				<td class="square" id="19"><img src="Images/Normal.png"></td>
+				<td class="square" id="18"><img src="Images/Normal.png"></td>
+				<td class="square" id="17"><img src="Images/Normal.png"></td>
+				<td class="square" id="16"><img src="Images/Normal.png"></td>
+				<td class="square" id="15"><img src="Images/Normal.png"></td>
+				<td class="square" id="14"><img src="Images/Normal.png"></td>
+				<td class="square" id="13"><img src="Images/Normal.png"></td>
+				<td class="square" id="12"><img src="Images/Normal.png"></td>
+				<td class="square" id="11"><img src="Images/Jail.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="22"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="10"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="23"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="9"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="24"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="8"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="25"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><div id="die1" class="dice die1">0</div></td>
+				<td><div id="die2" class="dice die2">0</div></td>
+				<td><button onclick="rollDice()">Roll<br>Dice</button></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="7"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="26"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="6"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="27"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="5"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="28"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="4"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="29"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="3"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="30"><img src="Images/Normal.png"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="square" id="2"><img src="Images/Normal.png"></td>
+			</tr>
+			<tr>
+				<td class="square" id="31"><img src="Images/Jail.png"></td>
+				<td class="square" id="32"><img src="Images/Normal.png"></td>
+				<td class="square" id="33"><img src="Images/Normal.png"></td>
+				<td class="square" id="34"><img src="Images/Normal.png"></td>
+				<td class="square" id="35"><img src="Images/Normal.png"></td>
+				<td class="square" id="36"><img src="Images/Normal.png"></td>
+				<td class="square" id="37"><img src="Images/Normal.png"></td>
+				<td class="square" id="38"><img src="Images/Normal.png"></td>
+				<td class="square" id="39"><img src="Images/Normal.png"></td>
+				<td class="square" id="40"><img src="Images/Normal.png"></td>
+				<td class="square" id="1"><img src="Images/Go.png"></td>
+			</tr>
+		</table>
+	</span>
+</body>
+</html>
